@@ -3,7 +3,6 @@ FROM python:3.9
 
 # Instalando o cliente PostgreSQL
 RUN apt-get update && apt-get install -y postgresql-client
-RUN sudo apt-get install libpq-dev
 
 # Definindo o diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -14,7 +13,7 @@ COPY requirements.txt .
 # Instalando as dependências Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiando todos os arquivos do diretório atual para o diretório de trabalho
+# Copiando todos os arquivos do diretório atual para o dSZZssziretório de trabalho
 COPY . .
 
 # Configurando variáveis de ambiente para a conexão com o banco de dados
