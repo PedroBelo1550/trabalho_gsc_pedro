@@ -3,7 +3,7 @@ version: "3"
 services:
   frontend:
     build:
-      context: ./libary_front
+      context: ./library_front
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -12,7 +12,7 @@ services:
 
   backend:
     build:
-      context: ./libary_back
+      context: ./library_back
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
