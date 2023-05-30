@@ -1,0 +1,50 @@
+name: Test Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:13.4-alpine
+        env:
+          POSTGRES_DB: library_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get -y remove docker docker-engine docker.io containerd runc
+          sudo apt-get -y update
+          sudo apt-get -y install docker.io
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          sudo usermod -aG docker $USER
+          docker-compose version
+
+      - name: Build and Run Services
+        run: |
+          cd path/to/docker-compose.yml
+          docker-compose up -d
+
+      - name: Wait for Services to Start
+        run: sleep 30
+
+      - name: Run Tests
+        run: |
+          cd path/to/tests
+          # Comandos para executar os testes da sua aplicação
+
+      - name: Tear Down Services
+        run: |
+          cd path/to/docker-compose.yml
+          docker-compose down
