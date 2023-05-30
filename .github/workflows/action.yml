@@ -14,19 +14,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Docker Compose
+        uses: docker/compose-action@v1
+        with:
+          compose-file: docker-compose.yml
+
+      - name: Build and test
         run: |
-          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-          docker-compose --version
+          docker-compose build
+          docker-compose run backend python manage.py test
 
-      - name: Build and run containers
-        run: docker-compose up
-
-      - name: Run tests
+      - name: Deploy
         run: |
-          # Adicione seus comandos de teste aqui
-          # Por exemplo:
-          docker exec backend pytest
-
-      - name: Stop and remove containers
-        run: docker-compose down
+          docker-compose up -d
