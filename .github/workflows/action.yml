@@ -20,7 +20,7 @@ jobs:
           docker-compose --version
 
       - name: Build and run containers
-        run: docker-compose up -d
+        run: docker-compose up
 
       - name: Run tests
         run: |
