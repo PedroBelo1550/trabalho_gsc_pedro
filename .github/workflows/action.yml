@@ -25,6 +25,11 @@ jobs:
             frontend
             nginx
 
+      - name: Build and test
+        run: |
+          docker-compose build
+          docker-compose run backend python manage.py test
+
       - name: Deploy
         run: |
           docker-compose up -d
