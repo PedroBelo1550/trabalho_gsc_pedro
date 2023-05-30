@@ -21,7 +21,7 @@
     backend:
       build:
         context: ./library_back
-        dockerfile: Dockerfile
+        dockerfile: ./library_back/Dockerfile  # Ajuste o caminho do Dockerfile aqui
       ports:
         - "8000:8000"
       depends_on:
