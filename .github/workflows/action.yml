@@ -13,7 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: compose
       - uses: actions/checkout@v3
       - uses: isbang/compose-action@v1.4.1
         with:
